@@ -200,12 +200,12 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+	Configure::write('Security.salt', 'Zzs8z0fe5QNU0UHL40Q5OKr5ly84m3hpojuROUkMawLm');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '76859309657453542496749683645');
+	Configure::write('Security.cipherSeed', '30591093138504526544281193739132');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -215,7 +215,7 @@
  * Set to `true` to apply timestamps, when debug = 0, or set to 'force' to always enable
  * timestamping.
  */
-	//Configure::write('Asset.timestamp', true);
+	Configure::write('Asset.timestamp', 'force');
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
  * This requires a/var/cache directory to be writable by the web server for caching.
@@ -300,3 +300,6 @@
  *
  */
 	Cache::config('default', array('engine' => 'File'));
+	
+	/* Core Config Variables */
+	Configure::write('Software.Name', 'Ladder');
