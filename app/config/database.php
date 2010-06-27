@@ -77,8 +77,8 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => '',
-		'password' => '',
+		'login' => 'dbladder',
+		'password' => 'dbladder',
 		'database' => 'dbladder',
 		'prefix' => '',
 	);
