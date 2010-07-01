@@ -2,6 +2,8 @@
 class PeopleSportsController extends AppController {
 
 	var $name = 'PeopleSports';
+	
+	var $uses = array('PeopleSport', 'Person', 'Sport');
 
 	function index() {
 		$this->PeopleSport->recursive = 0;
@@ -16,7 +18,7 @@ class PeopleSportsController extends AppController {
 		$this->set('peopleSport', $this->PeopleSport->read(null, $id));
 	}
 
-	function add() {
+	function add($person_id = null) {
 		if (!empty($this->data)) {
 			$this->PeopleSport->create();
 			if ($this->PeopleSport->save($this->data)) {
@@ -26,9 +28,8 @@ class PeopleSportsController extends AppController {
 				$this->Session->setFlash(__('The people sport could not be saved. Please, try again.', true));
 			}
 		}
-		$people = $this->PeopleSport->Person->find('list');
-		$sports = $this->PeopleSport->Sport->find('list');
-		$this->set(compact('people', 'sports'));
+		$this->set('person_id', $person_id);
+		$this->set('sports', $this->Sport->find('list'));
 	}
 
 	function edit($id = null) {

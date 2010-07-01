@@ -26,11 +26,6 @@
 			<?php echo $person['Person']['email']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Password'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $person['Person']['password']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Role'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($person['Role']['name'], array('controller' => 'roles', 'action' => 'view', $person['Role']['id'])); ?>
@@ -38,12 +33,12 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $person['Person']['created']; ?>
+			<?php echo $timeExtended->timeAgoInWords($person['Person']['created']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modified'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $person['Person']['modified']; ?>
+			<?php echo $timeExtended->timeAgoInWords($person['Person']['modified']); ?>
 			&nbsp;
 		</dd>
 	</dl>
@@ -88,9 +83,9 @@
 			<td><?php echo $match['id'];?></td>
 			<td><?php echo $match['sport_id'];?></td>
 			<td><?php echo $match['name'];?></td>
-			<td><?php echo $match['date_occured'];?></td>
-			<td><?php echo $match['created'];?></td>
-			<td><?php echo $match['modified'];?></td>
+			<td><?php echo $timeExtended->timeAgoInWords($match['date_occured']);?></td>
+			<td><?php echo $timeExtended->timeAgoInWords($match['created']);?></td>
+			<td><?php echo $timeExtended->timeAgoInWords($match['modified']);?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'matches', 'action' => 'view', $match['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'matches', 'action' => 'edit', $match['id'])); ?>
@@ -103,7 +98,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Match', true), array('controller' => 'matches', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New Match', true), array('controller' => 'people_matches', 'action' => 'add', $person['Person']['id']));?> </li>
 		</ul>
 	</div>
 </div>
@@ -141,7 +136,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Sport', true), array('controller' => 'sports', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New Sport', true), array('controller' => 'people_sports', 'action' => 'add', $person['Person']['id']));?> </li>
 		</ul>
 	</div>
 </div>

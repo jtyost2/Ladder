@@ -7,7 +7,6 @@
 			<th><?php echo $this->Paginator->sort('last_name');?></th>
 			<th><?php echo $this->Paginator->sort('username');?></th>
 			<th><?php echo $this->Paginator->sort('email');?></th>
-			<th><?php echo $this->Paginator->sort('password');?></th>
 			<th><?php echo $this->Paginator->sort('role_id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('modified');?></th>
@@ -27,12 +26,11 @@
 		<td><?php echo $person['Person']['last_name']; ?>&nbsp;</td>
 		<td><?php echo $person['Person']['username']; ?>&nbsp;</td>
 		<td><?php echo $person['Person']['email']; ?>&nbsp;</td>
-		<td><?php echo $person['Person']['password']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($person['Role']['name'], array('controller' => 'roles', 'action' => 'view', $person['Role']['id'])); ?>
 		</td>
-		<td><?php echo $person['Person']['created']; ?>&nbsp;</td>
-		<td><?php echo $person['Person']['modified']; ?>&nbsp;</td>
+		<td><?php echo $time->timeAgoInWords($person['Person']['created']); ?>&nbsp;</td>
+		<td><?php echo $time->timeAgoInWords($person['Person']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $person['Person']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $person['Person']['id'])); ?>

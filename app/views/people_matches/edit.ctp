@@ -4,8 +4,8 @@
  		<legend><?php __('Edit People Match'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('people_id');
-		echo $this->Form->input('match_id');
+		echo $this->Form->input('people_id', array('type' => 'hidden'));
+		echo $this->Form->input('match_id', array('type' => 'hidden'));
 		echo $this->Form->input('outcome_id');
 	?>
 	</fieldset>

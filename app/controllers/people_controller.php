@@ -2,9 +2,14 @@
 class PeopleController extends AppController {
 
 	var $name = 'People';
+	
+	function beforeFilter(){
+		$this->Auth->allow("login", 'logout', 'add');
+		parent::beforeFilter();
+	}
 
 	function index() {
-		$this->Person->recursive = 0;
+		$this->Person->recursive = 1;
 		$this->set('people', $this->paginate());
 	}
 
@@ -27,9 +32,8 @@ class PeopleController extends AppController {
 			}
 		}
 		$roles = $this->Person->Role->find('list');
-		$matches = $this->Person->Match->find('list');
 		$sports = $this->Person->Sport->find('list');
-		$this->set(compact('roles', 'matches', 'sports'));
+		$this->set(compact('roles', 'sports'));
 	}
 
 	function edit($id = null) {
@@ -72,9 +76,19 @@ class PeopleController extends AppController {
 	* for login, so you can leave this function blank.
 	*/
 	function login() {
+		Cache::clear();
+    	$this->disableCache();
+		if ($this->Auth->user()) {
+			$this->Session->destroy();
+			$this->Session->write('Person', $this->Person->read(null,$this->Auth->user('id')));
+		} else {
+		}
 	}
 	function logout() {
-	$this->redirect($this->Auth->logout());
+		Cache::clear();
+    	$this->disableCache();
+    	$this->Session->destroy();
+		$this->redirect($this->Auth->logout());
 	}
 }
 ?>

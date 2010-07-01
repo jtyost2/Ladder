@@ -48,3 +48,8 @@
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  *
  */
+
+function prd($data_set = null){
+	pr($data_set);
+	die();
+}

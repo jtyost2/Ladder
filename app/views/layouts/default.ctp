@@ -20,7 +20,7 @@
 				<h1><?php if(!empty($title_for_layout)){ __($title_for_layout); e(" | "); } __(Configure::read("Software.Name")); ?></h1>
 			</div>
 			<div id="nav"  class="span-5">
-				<?php echo $this->element('nav', array('user_session' => $session->read('User'))); ?>
+				<?php echo $this->element('nav', array('user_session' => $session->read('Person'))); ?>
 			</div>
 		</div><!-- Header -->
 		
@@ -43,6 +43,7 @@
 	<!-- Javascript -->
 	<?php echo $html->script("http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"); ?>
 	<?php echo $html->script(array("core")); ?>
+	<?php echo $this->element('sql_dump'); ?>
 	<?php echo $scripts_for_layout; ?>
 	<!-- Google Analytics -->
 	<script type="text/javascript">

@@ -1,10 +1,10 @@
 <div class="peopleSports form">
 <?php echo $this->Form->create('PeopleSport');?>
 	<fieldset>
- 		<legend><?php __('Add People Sport'); ?></legend>
+ 		<legend><?php __('Add Person to Sport'); ?></legend>
 	<?php
-		echo $this->Form->input('people_id');
-		echo $this->Form->input('sports_id');
+		echo $this->Form->input('people_id', array('type' => 'hidden', 'value' => $person_id));
+		echo $this->Form->input('sports_id', array('options' => $sports));
 		echo $this->Form->input('person_title');
 	?>
 	</fieldset>

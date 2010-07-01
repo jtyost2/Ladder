@@ -51,5 +51,21 @@ class PeopleSport extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	function find_sports_by_person($person_id = null){
+		$person_tied_to_sport = $this->find('all', array(
+			'fields' => array('PeopleSport.sports_id'),
+			'conditions' => array('PeopleSport.people_id' => $person_id)
+		));
+		
+		$return_array = array();
+		if(!empty($person_tied_to_sport)):
+			foreach($person_tied_to_sport as $sport):
+				$return_array[] = $sport['PeopleSport']['sports_id'];
+			endforeach;
+		endif;
+		
+		return $return_array;
+	}
 }
 ?>

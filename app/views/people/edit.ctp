@@ -8,9 +8,7 @@
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('username');
 		echo $this->Form->input('email');
-		echo $this->Form->input('password');
-		echo $this->Form->input('role_id');
-		echo $this->Form->input('Match');
+		echo $this->Form->input('role_id', array('type' => 'hidden'));
 		echo $this->Form->input('Sport');
 	?>
 	</fieldset>
