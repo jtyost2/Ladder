@@ -12,7 +12,6 @@
 	<p>Created by: Mark Romero and Justin Yost</p>
 </div>
 <div class="span-7 colborder">
-	<p><?php e($html->link(__("Need Help or Have a Question?", true), array('controller'=>'pages', 'action' => 'faq'), array('class' => 'help'))); ?></p>
 </div>
 <div class="span-7">
 </div>

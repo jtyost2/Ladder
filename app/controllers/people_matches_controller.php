@@ -6,7 +6,7 @@ class PeopleMatchesController extends AppController {
 	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'PeopleMatch', 'Outcome');
 
 	function index() {
-		$this->PeopleMatch->recursive = 0;
+		$this->PeopleMatch->recursive = 1;
 		$this->set('peopleMatches', $this->paginate());
 	}
 
@@ -36,7 +36,7 @@ class PeopleMatchesController extends AppController {
 				$people_match[] = $added_data;
 				if ($this->PeopleMatch->saveAll($people_match)) {
 					$this->Session->setFlash(__('The people match has been saved', true));
-					$this->redirect(array('action' => 'index'));
+					$this->redirect(array('controller' => 'people', 'action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('The people match could not be saved. Please, try again.', true));
 				}
@@ -82,14 +82,14 @@ class PeopleMatchesController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for people match', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer(array('action' => 'index')));
 		}
 		if ($this->PeopleMatch->delete($id)) {
 			$this->Session->setFlash(__('People match deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer(array('action' => 'index')));
 		}
 		$this->Session->setFlash(__('People match was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		$this->redirect($this->referer(array('action' => 'index')));
 	}
 }
 ?>

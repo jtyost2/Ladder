@@ -45,7 +45,5 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Outcome', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List People Matches', true), array('controller' => 'people_matches', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New People Match', true), array('controller' => 'people_matches', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

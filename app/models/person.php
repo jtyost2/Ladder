@@ -91,7 +91,7 @@ class Person extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Match' => array(
 			'className' => 'Match',
-			'joinTable' => 'outcome',
+			'joinTable' => 'people_matches',
 			'foreignKey' => 'people_id',
 			'associationForeignKey' => 'match_id',
 			'unique' => true,

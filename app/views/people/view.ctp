@@ -49,13 +49,6 @@
 		<li><?php echo $this->Html->link(__('Edit Person', true), array('action' => 'edit', $person['Person']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Delete Person', true), array('action' => 'delete', $person['Person']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $person['Person']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List People', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Person', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Roles', true), array('controller' => 'roles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Role', true), array('controller' => 'roles', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Matches', true), array('controller' => 'matches', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Match', true), array('controller' => 'matches', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Sports', true), array('controller' => 'sports', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Sport', true), array('controller' => 'sports', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -66,6 +59,7 @@
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Sport Id'); ?></th>
 		<th><?php __('Name'); ?></th>
+		<th><?php __('Outcome'); ?></th>
 		<th><?php __('Date Occured'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Modified'); ?></th>
@@ -73,23 +67,24 @@
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($person['Match'] as $match):
+		foreach ($people_matches as $match):
 			$class = null;
 			if ($i++ % 2 == 0) {
 				$class = ' class="altrow"';
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $match['id'];?></td>
-			<td><?php echo $match['sport_id'];?></td>
-			<td><?php echo $match['name'];?></td>
-			<td><?php echo $timeExtended->timeAgoInWords($match['date_occured']);?></td>
-			<td><?php echo $timeExtended->timeAgoInWords($match['created']);?></td>
-			<td><?php echo $timeExtended->timeAgoInWords($match['modified']);?></td>
+			<td><?php echo $match['Match']['id'];?></td>
+			<td><?php echo $match['Match']['sport_id'];?></td>
+			<td><?php echo $match['Match']['name'];?></td>
+			<td><?php echo $match['Outcome']['name'];?></td>
+			<td><?php echo $timeExtended->timeAgoInWords($match['Match']['date_occured']);?></td>
+			<td><?php echo $timeExtended->timeAgoInWords($match['Match']['created']);?></td>
+			<td><?php echo $timeExtended->timeAgoInWords($match['Match']['modified']);?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'matches', 'action' => 'view', $match['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'matches', 'action' => 'edit', $match['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'matches', 'action' => 'delete', $match['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $match['id'])); ?>
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'matches', 'action' => 'view', $match['Match']['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'people_matches', 'action' => 'edit', $match['PeopleMatch']['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'matches', 'action' => 'delete', $match['Match']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $match['Match']['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

@@ -3,6 +3,8 @@ class PeopleController extends AppController {
 
 	var $name = 'People';
 	
+	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'PeopleMatch', 'Outcome', 'Role');
+	
 	function beforeFilter(){
 		$this->Auth->allow("login", 'logout', 'add');
 		parent::beforeFilter();
@@ -18,6 +20,9 @@ class PeopleController extends AppController {
 			$this->Session->setFlash(__('Invalid person', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->set('people_matches', $this->PeopleMatch->find('all', array(
+			'conditions' => array('PeopleMatch.people_id' => $id, 'NOT' => array('Match.id' => null))
+		)));
 		$this->set('person', $this->Person->read(null, $id));
 	}
 

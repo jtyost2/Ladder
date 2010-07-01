@@ -13,10 +13,7 @@
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
-
-		<li><?php echo $this->Html->link(__('List People Sports', true), array('action' => 'index'));?></li>
 		<li><?php echo $this->Html->link(__('List People', true), array('controller' => 'people', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New People', true), array('controller' => 'people', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Sports', true), array('controller' => 'sports', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Sports', true), array('controller' => 'sports', 'action' => 'add')); ?> </li>
 	</ul>

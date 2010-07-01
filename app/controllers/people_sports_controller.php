@@ -29,7 +29,11 @@ class PeopleSportsController extends AppController {
 			}
 		}
 		$this->set('person_id', $person_id);
-		$this->set('sports', $this->Sport->find('list'));
+		//Find the Sports a Person isn't already associated with
+		$this->set('sports', $this->Sport->find('list', array(
+			'fields' => array('Sport.id', 'Sport.name'),
+			'conditions' => array('NOT' => array('Sport.id' => $this->PeopleSport->find_sports_by_person($person_id)))
+		)));
 	}
 
 	function edit($id = null) {

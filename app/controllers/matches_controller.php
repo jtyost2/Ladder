@@ -2,6 +2,8 @@
 class MatchesController extends AppController {
 
 	var $name = 'Matches';
+	
+	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'PeopleMatch', 'Outcome');
 
 	function index() {
 		$this->Match->recursive = 0;
@@ -47,9 +49,8 @@ class MatchesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Match->read(null, $id);
 		}
-		$sports = $this->Match->Sport->find('list');
-		$people = $this->Match->Person->find('list');
-		$this->set(compact('sports', 'people'));
+		$sports = $this->Sport->find('list');
+		$this->set(compact('sports'));
 	}
 
 	function delete($id = null) {

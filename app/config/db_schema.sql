@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `matches` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `date_occured` datetime NOT NULL,
   `created` datetime NOT NULL,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sport_id` (`sport_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Matches Table';
