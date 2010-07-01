@@ -66,5 +66,15 @@ class PeopleController extends AppController {
 		$this->Session->setFlash(__('Person was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	/**
+	* The AuthComponent provides the needed functionality
+	* for login, so you can leave this function blank.
+	*/
+	function login() {
+	}
+	function logout() {
+	$this->redirect($this->Auth->logout());
+	}
 }
 ?>
