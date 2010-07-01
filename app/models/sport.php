@@ -46,8 +46,8 @@ class Sport extends AppModel {
 		'Person' => array(
 			'className' => 'Person',
 			'joinTable' => 'people_sports',
-			'foreignKey' => 'sport_id',
-			'associationForeignKey' => 'person_id',
+			'foreignKey' => 'sports_id',
+			'associationForeignKey' => 'people_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

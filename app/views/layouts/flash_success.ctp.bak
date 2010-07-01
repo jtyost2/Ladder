@@ -1,0 +1,1 @@
+<div class="flash success"><p><?php e($content_for_layout); ?><a href="#close_flash" onclick="return false;" title="<?php __("Close Message"); ?>" class="close_flash cross">Close</a></p></div>

@@ -34,24 +34,12 @@ class Match extends AppModel {
 			'order' => ''
 		)
 	);
-
-	var $hasAndBelongsToMany = array(
-		'Person' => array(
-			'className' => 'Person',
-			'joinTable' => 'people_matches',
-			'foreignKey' => 'match_id',
-			'associationForeignKey' => 'person_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+	
+	var $hasMany = array(
+		'Outcome' => array(
+			'className' => 'Outcome',
+			'foreignKey' => 'match_id'
 		)
 	);
-
 }
 ?>

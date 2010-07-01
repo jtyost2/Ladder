@@ -13,6 +13,8 @@ class SportsController extends AppController {
 			$this->Session->setFlash(__('Invalid sport', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Sport->Behaviors->attach('Containable');
+		$this->Sport->contain(array("Match" => array("Outcome" => "Person")));
 		$this->set('sport', $this->Sport->read(null, $id));
 	}
 
