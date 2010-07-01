@@ -15,10 +15,14 @@ class Outcome extends AppModel {
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	var $hasMany = array(
-		'PeopleMatch' => array(
-			'className' => 'PeopleMatch',
-			'foreignKey' => 'outcome_id',
+	var $belongsTo = array(
+		'Person' => array(
+			'className' => 'Person',
+			'foreignKey' => 'people_id',
+		),
+		'Match' => array(
+			'className' => 'Match',
+			'foreignKey' => 'match_id',
 		)
 	);
 

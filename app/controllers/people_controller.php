@@ -3,7 +3,7 @@ class PeopleController extends AppController {
 
 	var $name = 'People';
 	
-	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'PeopleMatch', 'Outcome', 'Role');
+	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'Outcome', 'Role');
 	
 	function beforeFilter(){
 		$this->Auth->allow("login", 'logout', 'add');
@@ -21,7 +21,7 @@ class PeopleController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('people_matches', $this->PeopleMatch->find('all', array(
-			'conditions' => array('PeopleMatch.people_id' => $id, 'NOT' => array('Match.id' => null))
+			'conditions' => array('outcome.people_id' => $id, 'NOT' => array('Match.id' => null))
 		)));
 		$this->set('person', $this->Person->read(null, $id));
 	}

@@ -2,6 +2,12 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
+	var $permissions = array(
+       'login' => '*', //everybody can access this action
+       'logout' => '*',
+	   'register' => '*'
+	);
+	
 	function beforeFilter(){
 		$this->Auth->allow(array('login', 'logout', 'register'));
 	}

@@ -28,13 +28,14 @@
 		<td>T</td>
 		<td></td>
 	</tr>
-	<?php print_r($sport); foreach($sport['Person'] as $p):
-		print_r($p);
-	?>
+	<?php $i=1; foreach($rankings as $k => $p):?>
 	<tr>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td><?php echo $i;?></td>
+		<td><?php echo $people[$k];?></td>
+		<td><?php echo isset($stats[$k]['w']) ? $stats[$k]['w'] : 0;?></td>
+		<td><?php echo isset($stats[$k]['l']) ? $stats[$k]['l'] : 0;?></td>
+		<td><?php echo isset($stats[$k]['t']) ? $stats[$k]['t'] : 0;?></td>
+		<td><?php echo isset($stats[$k]['score']) ? $stats[$k]['score'] : 0;?></td>
 	</tr>
-	<?php endforeach;?>
+	<?php $i++; endforeach;?>
 </table>

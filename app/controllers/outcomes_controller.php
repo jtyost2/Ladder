@@ -2,7 +2,14 @@
 class OutcomesController extends AppController {
 
 	var $name = 'Outcomes';
-
+	var $permissions = array(
+       'index' => '*', //everybody can access this action
+       'view' => '*',
+	   'add' => array('user', 'admin'),
+	   'edit' => array('admin'),
+	   'delete' => array('admin')
+	);
+	
 	function index() {
 		$this->Outcome->recursive = 0;
 		$this->set('outcomes', $this->paginate());

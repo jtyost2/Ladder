@@ -25,9 +25,27 @@
 			$this->Auth->userModel = "Person";
 			$this->Auth->loginRedirect = '/';
 			$this->Auth->logoutRedirect = array('controller' => 'people', 'action' => 'login');
+			$this->Auth->authorize = 'controller';
 			
 			//Set the currentUser object to the Auth->user()
 			$this->currentUser = $this->Auth->user();
-		}		
+			$this->Session->write('User', $this->currentUser);
+		}
+		
+		function isAuthorized(){
+			return true;
+            //If User is an admin always allow access
+       		if($this->Session->read('User.role') == 'admin'): return true; endif;
+       		//if permissions exist for the action, validate permissions
+       		if(!empty($this->permissions[$this->action])){
+               //If permissions are set to '*' or all user roles return true
+           		if($this->permissions[$this->action] == '*') return true;
+           		//If Permissions set in the array is equal to the user's role return true
+           			if(in_array($this->Session->read('User.role'), (array)$this->permissions[$this->action])) return true;
+       		}
+       		//Set the flass to display a permissions error and return false
+       		$this->Session->setFlash(__('You do not have permission to access this.', true));
+       		return false;
+   		}		
 	}
 ?>

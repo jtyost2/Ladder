@@ -3,7 +3,13 @@ class MatchesController extends AppController {
 
 	var $name = 'Matches';
 	
-	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'PeopleMatch', 'Outcome');
+	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'Outcome');
+	var $permissions = array(
+       'index' => '*', //everybody can access this action
+       'view' => '*',
+	   'add' => array('user', 'admin'),
+	   'delete' => array('admin'),
+	);
 
 	function index() {
 		$this->Match->recursive = 0;

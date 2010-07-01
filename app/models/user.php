@@ -1,7 +1,14 @@
 <?php
 class User extends AppModel {
-	var $name = 'User';
-	var $useTable = 'people';
+	var $name = 'Person';
+	
+	var $display_field = "full_name";
+	
+	var $virtualFields = array(
+	    'name' => "CONCAT(Person.first_name, ' ', Person.last_name)",
+	    'id_and_name' => "CONCAT(Person.id, ' - ', Person.first_name, ' ', Person.last_name)",
+	);
+	
 	var $validate = array(
 		'first_name' => array(
 			'notempty' => array(
@@ -32,6 +39,11 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'isUnique' => array(
+   				'rule' => 'isUnique',
+        		'message' => 'This username has already been taken.',
+        		'last' => true,
+        	),
 		),
 		'email' => array(
 			'email' => array(
@@ -79,8 +91,8 @@ class User extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Match' => array(
 			'className' => 'Match',
-			'joinTable' => 'people_matches',
-			'foreignKey' => 'person_id',
+			'joinTable' => 'outcome',
+			'foreignKey' => 'people_id',
 			'associationForeignKey' => 'match_id',
 			'unique' => true,
 			'conditions' => '',
@@ -95,8 +107,8 @@ class User extends AppModel {
 		'Sport' => array(
 			'className' => 'Sport',
 			'joinTable' => 'people_sports',
-			'foreignKey' => 'person_id',
-			'associationForeignKey' => 'sport_id',
+			'foreignKey' => 'people_id',
+			'associationForeignKey' => 'sports_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

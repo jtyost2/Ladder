@@ -2,7 +2,14 @@
 class RolesController extends AppController {
 
 	var $name = 'Roles';
-
+	var $permissions = array(
+       'index' => 'admin', //everybody can access this action
+       'view' => 'admin',
+	   'add' => 'admin',
+	   'edit' => 'admin',
+	   'delete' => 'admin'
+	);
+	
 	function index() {
 		$this->Role->recursive = 0;
 		$this->set('roles', $this->paginate());
