@@ -3,7 +3,7 @@ class PeopleController extends AppController {
 
 	var $name = 'People';
 	
-	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'Outcome', 'Role');
+	var $uses = array('PeopleSport', 'Person', 'Sport', 'Match', 'Outcome', 'Role', 'PeopleMatches');
 	
 	function beforeFilter(){
 		$this->Auth->allow("login", 'logout', 'add');
@@ -11,8 +11,9 @@ class PeopleController extends AppController {
 	}
 
 	function index() {
-		$this->Person->recursive = 1;
+		$this->Person->recursive = 2;
 		$this->set('people', $this->paginate());
+		$this->set('roles', $this->Person->Role->find('list'));
 	}
 
 	function view($id = null) {
@@ -20,8 +21,8 @@ class PeopleController extends AppController {
 			$this->Session->setFlash(__('Invalid person', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('people_matches', $this->PeopleMatch->find('all', array(
-			'conditions' => array('outcome.people_id' => $id, 'NOT' => array('Match.id' => null))
+		$this->set('people_matches', $this->PeopleMatches->find('all', array(
+			'conditions' => array('PeopleMatches.people_id' => $id, 'NOT' => array('PeopleMatches.match_id' => null))
 		)));
 		$this->set('person', $this->Person->read(null, $id));
 	}

@@ -21,20 +21,20 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $person['Person']['id']; ?>&nbsp;</td>
-		<td><?php echo $person['Person']['first_name']; ?>&nbsp;</td>
-		<td><?php echo $person['Person']['last_name']; ?>&nbsp;</td>
-		<td><?php echo $person['Person']['username']; ?>&nbsp;</td>
-		<td><?php echo $person['Person']['email']; ?>&nbsp;</td>
+		<td><?php echo $person['People']['id']; ?>&nbsp;</td>
+		<td><?php echo $person['People']['first_name']; ?>&nbsp;</td>
+		<td><?php echo $person['People']['last_name']; ?>&nbsp;</td>
+		<td><?php echo $person['People']['username']; ?>&nbsp;</td>
+		<td><?php echo $person['People']['email']; ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($person['Role']['name'], array('controller' => 'roles', 'action' => 'view', $person['Role']['id'])); ?>
+			<?php echo $this->Html->link($roles[$person['People']['role_id']], array('controller' => 'roles', 'action' => 'view', $person['People']['role_id'])); ?>
 		</td>
-		<td><?php echo $time->timeAgoInWords($person['Person']['created']); ?>&nbsp;</td>
-		<td><?php echo $time->timeAgoInWords($person['Person']['modified']); ?>&nbsp;</td>
+		<td><?php echo $time->timeAgoInWords($person['People']['created']); ?>&nbsp;</td>
+		<td><?php echo $time->timeAgoInWords($person['People']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $person['Person']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $person['Person']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $person['Person']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $person['Person']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $person['People']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $person['People']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $person['People']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $person['People']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

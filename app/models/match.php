@@ -38,7 +38,7 @@ class Match extends AppModel {
 	var $hasMany = array(
 		'Outcome' => array(
 			'className' => 'Outcome',
-			'foreignKey' => 'match_id'
+			'foreignKey' => 'outcome_id'
 		)
 	);
 }
